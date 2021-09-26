@@ -1,0 +1,47 @@
+<% var web = collect(web); -%>
+---
+title: "<%- title %>"
+description: "<%- web.shuffle().take(1).implode('. ') %>"
+slug: "<%= slug %>"
+engine: "<%= engine %>"
+cover: "<%- content[0].url -%>"
+date: "<%= publishDate %>"
+author: "<%- chance.name() %>"
+ratingValue: "<%- chance.floating({ min: 1.0, max: 5.0 }).toFixed(1) %>"
+reviewCount: "<%- chance.integer({ min: 1, max: 35 }) %>"
+images:
+<% if(content.length > 0){ -%>
+  <%_ for (var i = 0; i < content.length; i++) { -%>
+  - image: "<%- content[i].url -%>"
+    caption: "<%- content[i].caption -%>"
+  <%_ } -%>
+<% } -%>
+draft: false
+type: post
+---
+
+<%- web.shuffle().take(chance.integer({ min: 1, max: 3 })).implode('. ') -%>
+
+<% img = collect(content).shuffle().pop(); -%>
+<% if(img !== undefined){ -%>
+![<%- img.caption %>](<%- img.url %> "<%- img.caption %>")
+<% } -%>
+
+<%= web.shuffle().take(chance.integer({ min: 1, max: 3 })).implode('. ') -%>
+
+<!--inArticleAds-->
+
+<!--galleryOne-->
+
+<%- web.shuffle().take(chance.integer({ min: 1, max: 3 })).pop() -%>
+<%- web.shuffle().take(chance.integer({ min: 1, max: 3 })).pop() -%>
+
+<!--inArticleAds-->
+
+<!--galleryTwo-->
+
+<%- web.shuffle().take(chance.integer({ min: 1, max: 3 })).implode('. ') -%>
+
+<!--galleryThree-->
+
+<%- web.shuffle().take(chance.integer({ min: 1, max: 3 })).implode('. ') -%>
